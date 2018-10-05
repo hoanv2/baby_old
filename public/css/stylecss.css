@@ -1,0 +1,30 @@
+.navbarTop{
+    color: white;
+    height: 0px;
+}
+.userLogin1{
+    list-style: none;
+}
+.userLogin2{
+    padding:55px !important;
+    list-style: none;
+}
+
+.cart_cart{
+    margin-left:40px !important;
+}
+.dropdowLogin{
+    margin-left: 110px;
+    margin-top: -73px;
+    text-align: center;
+}
+.user_login{
+    margin-left: 50px;
+     margin-top: -65px !important;
+     width: 180px;
+}
+.dropdowUserLogin{
+    left: 114px !important;
+    top: 0px !important; 
+    text-align: center;
+}
