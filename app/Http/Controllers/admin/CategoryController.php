@@ -22,7 +22,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $data['slug'] = $data['name'];
+        $data['slug'] = str_slug($data['name']);
         Category::create($data);
         return response()->json([
             'data' => $data,
@@ -30,48 +30,35 @@ class CategoryController extends Controller
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+
+    public function edit(Request $request)
     {
-        //
+        $id = $request->get('id');
+        $data = Category::find($id);
+        return response()->json([
+            'status' => true,
+            'data' => $data,
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function update(Request $request)
     {
-        //
+        $data = $request->all();
+        $data['slug'] = str_slug($data['name']);
+        Category::find($data['id'])->update($data);
+        return response()->json([
+            'status' => true,
+            'data' => $data,
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        Category::destroy($id);
+        return response()->json([
+            'errors' =>false,
+            'messages' => 'xóa thành công',
+        ]);
     }
 }

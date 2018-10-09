@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
+use App\Models\Category;
+
 
 class ProductController extends Controller
 {
@@ -20,31 +22,27 @@ class ProductController extends Controller
         return view('admin.product.index',compact('products'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        return view('admin.product.create');
+        $categories = Category::get();
+        return view('admin.product.create',compact('categories','products'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         $data = $request->all();
+
         if($request->hasFile('image')){
             $path = $request->file('image')->store('image');
             $data['image'] = $path;
         }
+
         $data['slug'] = str_slug($data['name']);
+
         $products = Product::create($data);
+
         if ($products) {
             return redirect()->route('products.index')->with(['flag'=>'success','toastr.success'=>'Thêm Mới Thành Công']);
         }
@@ -61,8 +59,10 @@ class ProductController extends Controller
 
     public function edit($id)
     {
+        $categories = Category::get();
+
         $products = Product::where('id',$id)->first();
-        return view('admin.product.edit',compact('products'));
+        return view('admin.product.edit',compact('products','categories'));
 
     }
 
@@ -77,8 +77,8 @@ class ProductController extends Controller
             unset($data['image']);
         }
         $data['slug'] = str_slug($data['name']);
-        $products = Product::find($id)->update($data);
 
+        $products = Product::find($id)->update($data);
         if ($products) {
             return redirect()->route('products.index')->with(['flag'=>'success','toastr.success'=>'Thêm Mới Thành Công']);
         }

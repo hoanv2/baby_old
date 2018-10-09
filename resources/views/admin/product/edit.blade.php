@@ -1,5 +1,6 @@
 @extends('admin.dashboad')
 @section('head')
+    <link rel="stylesheet" href="{{asset('css/select2.min.css')}}">
 
 @endsection
 
@@ -39,6 +40,24 @@
                     @endif
                     {!! Form::textarea('description', $products->description, ['class' => 'form-control']) !!}
 
+                </div>
+
+                <div class="form-group">
+                    <label for="category_id">Category</label>
+                    @if ($errors->has('category_id'))
+                        <span class="help-block" style="color: red;">
+                                <strong>{{ $errors->first('category_id') }}</strong>
+                            </span>
+                    @endif
+
+                    <select name="category_id" class="form-control">
+                        <option>---</option>
+                        @foreach($categories as $category)
+                            <option value="{{$category->id}}" selected="selected">
+                                {{$category->name}}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <div class="form-group">
@@ -85,7 +104,14 @@
     </div>
 @endsection
 @section('footer')
-    <script type="text/javascript">
+        <script src="{{ asset('js/select2.min.js') }}"></script>
+        <script type="text/javascript">
+        $('.select2').select2({
+            placeholder : 'Please select user',
+            multiple: true,
+            tags: true,
+            tokenSeparators: [',', ' '],
+        });
 
         $('#image').ace_file_input({
             style: 'well',

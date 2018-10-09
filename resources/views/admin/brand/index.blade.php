@@ -16,14 +16,14 @@
         </thead>
 
         <tbody>
-        @foreach($categories as $category)
+        @foreach($brands as $brand)
             <tr id="tr-">
-                <td>{{$category->id}}</td>
-                <td>{{$category->name}}</td>
-                <td>{{$category->slug}}</td>
+                <td>{{$brand->id}}</td>
+                <td>{{$brand->name}}</td>
+                <td>{{$brand->slug}}</td>
                 <td>
-                    <a href="javascript:;" onclick="edit({{ $category->id }})" ><button type="button" class="btn btn-warning">Edit</button></a>
-                    <button type="submit" data-id="{{ $category->id }}" class="btn btn-default btn-danger">Delete</button>
+                    <a href="javascript:;" onclick="edit({{ $brand->id }})" ><button type="button" class="btn btn-warning">Edit</button></a>
+                    <button type="submit" data-id="{{ $brand->id }}" class="btn btn-default btn-danger">Delete</button>
                 </td>
             </tr>
         @endforeach
@@ -36,14 +36,14 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Thêm mới Category</h4>
+                    <h4 class="modal-title">Thêm mới Brand</h4>
                 </div>
                 <div class="modal-body">
                     <form action="" method="POST"  role="form" enctype="multipart/form-data" id="formCreate">
-                        <h2 style="width: 80%;">Thêm Mới Category</h2>
+                        <h2 style="width: 80%;">Thêm Mới Brand</h2>
                         <hr>
                         <div>
-                            <i class="fa fa-table fa-fw"></i><a href="{{ url('dashboard') }}">Dashboard</a> -> <a href="{{ route('category.index') }}">Category</a> -> <b>Thêm mới</b>
+                            <i class="fa fa-table fa-fw"></i><a href="{{ url('dashboard') }}">Dashboard</a> -> <a href="{{ route('brand.index') }}">Brand</a> -> <b>Thêm mới</b>
                         </div>
                         <hr>
                         <div class="form-group">
@@ -112,24 +112,21 @@
             }
         });
 
-
         $(document).ready( function () {
             $('#example').DataTable();
         });
 
-
-        $(document).on('click' , '.btnCreate', function(event) {
+        $(document).on('click','.btnCreate',function (event) {
             event.preventDefault();
-
             var name = $('#createName').val();
             $.ajax({
-                url: '{{ route('category.store') }}',
+                url: '{{ route('brand.store') }}',
                 type: 'POST',
                 dataType: 'json',
                 data:{
                     name:name,
                 },
-                success: function(res){
+                success:function (res) {
                     var data = res.data;
                     toastr.success('Thêm mới thành công !');
                     $('#create_modal').modal('hide');
@@ -148,7 +145,7 @@
         function edit(id){
             $('#edit_modal').modal('show');
             $.ajax({
-                url: '{{ route('category.edit') }}',
+                url: '{{ route('brand.edit') }}',
                 type: 'POST',
                 dataType: 'json',
                 data: {id:id},
@@ -166,7 +163,7 @@
             var id = $('#uId').val();
 
             $.ajax({
-                url: '{{ route('category.update') }}',
+                url: '{{ route('brand.update') }}',
                 type: 'POST',
                 dataType: 'json',
                 data:{
@@ -204,7 +201,7 @@
                 },
                 function(){
                     $.ajax({
-                        url: 'category/'+id,
+                        url: 'brand/'+id,
                         type: 'delete',
                         data: {id: 'id'},
                         success:function(data){
@@ -217,6 +214,9 @@
                     });
                 });
         });
+
+
+
 
     </script>
 
