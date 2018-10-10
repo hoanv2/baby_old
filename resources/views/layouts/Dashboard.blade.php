@@ -12,13 +12,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="">Bán Hàng</a>
+                <a class="navbar-brand" href="">SHOP</a>
             </div>
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="{{-- {{ route('blogs.indexRight') }} --}}">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="/">
                         Bán Hàng
                         <i class="fa fa-th" aria-hidden="true"></i>
                     </a>
@@ -168,26 +168,26 @@
                     <!-- /.dropdown-alerts -->
                 </li>
                 <!-- /.dropdown -->
-                {{--<li class="dropdown">--}}
-                    {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">--}}
-                       {{--Xin Chào: {{ Auth::user()->name }} <span class="caret"></span>--}}
-                    {{--</a>--}}
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                       Xin Chào: {{ Auth::user()->name }} <span class="caret"></span>
+                    </a>
 
-                    {{--<ul class="dropdown-menu" role="menu">--}}
-                        {{--<li>--}}
-                            {{--<a href="{{ route('logout') }}"--}}
-                                {{--onclick="event.preventDefault();--}}
-                                         {{--document.getElementById('logout-form').submit();">--}}
-                                {{--Logout--}}
-                            {{--</a>--}}
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();">
+                                Logout
+                            </a>
 
-                            {{--<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">--}}
-                                {{--{{ csrf_field() }}--}}
-                            {{--</form>--}}
-                        {{--</li>--}}
-                    {{--</ul>--}}
-                    {{--<!-- /.dropdown-user -->--}}
-                {{--</li>--}}
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
@@ -207,18 +207,18 @@
                             <!-- /input-group -->
                         </li>
                         <li {{ (Request::is('/') ? 'class="active"' : '') }}>
-                            {{--<a href="{{ route('users.index') }}"><i class="fa fa-dashboard fa-fw"></i> Users</a>--}}
+                            <a href="{{ route('users.index') }}"><i class="fa fa-dashboard fa-fw"></i> Users</a>
                         </li>
                         <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>
-                            {{--<a href="{{ route('blogs.index') }}"><i class="fa fa-bar-chart-o fa-fw"></i> Blogs</a>--}}
+                            <a href="{{ route('products.index') }}"><i class="fa fa-bar-chart-o fa-fw"></i> Products</a>
                             <!-- /.nav-second-level -->
                         </li>
                         
                         <li {{ (Request::is('') ? 'class="active"' : '') }}>
-                            {{--<a href="{{ route('tags.index') }} "><i class="fa fa-edit fa-fw"></i> Tags</a>--}}
+                            <a href="{{ route('brand.index') }} "><i class="fa fa-edit fa-fw"></i>Brand</a>
                         </li>
                         <li >
-                            {{--<a href="{{ route('categories.index') }}"><i class="fa fa-wrench fa-fw"></i>Categoryes</a>--}}
+                            <a href="{{ route('category.index') }}"><i class="fa fa-wrench fa-fw"></i>Categoryes</a>
                         </li>
                     </ul>
                 </div>

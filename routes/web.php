@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('client.index');
 });
 
+Route::get('/admin','Auth\LoginController@getLogin')->name('getLogin');
+Route::post('/admin','Auth\LoginController@postLogin')->name('postLogin');
+Auth::routes();
 
 //Route::resource('user','admin\UserController');
 Route::get('user','admin\UserController@index')->name('users.index');
@@ -49,3 +52,7 @@ Route::post('brand/update','admin\BrandController@update')->name('brand.update')
 Route::delete('brand/{id}','admin\BrandController@destroy')->name('brand.destroy');
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

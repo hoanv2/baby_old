@@ -442,33 +442,10 @@
 
 						<ul class="submenu">
 							<li class="">
-								
-
 								<a href="{{ route('users.index') }}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Tất Cả Người Dùng
 								</a>
-
-
-
-							</li>
-
-							<li class="">
-								<a href="{{ route('users.create') }}">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Thêm mới Thành viên
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="elements.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Elements
-								</a>
-
-								<b class="arrow"></b>
 							</li>
 						</ul>
 					</li>
@@ -485,7 +462,7 @@
 
 						<ul class="submenu">
 							<li class="">
-								<a href="">
+								<a href="{{ route('products.index') }}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									tất cả sản phẩm
 								</a>
@@ -494,7 +471,7 @@
 							</li>
 
 							<li class="">
-								<a href="">
+								<a href="{{ route('products.create') }}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Thêm mới sản phẩm
 								</a>
@@ -516,23 +493,13 @@
 
 						<ul class="submenu">
 							<li class="">
-								<a href="">
+								<a href="{{ route('category.index') }}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Tất cả Danh Mục
 								</a>
 
 								<b class="arrow"></b>
 							</li>
-
-							<li class="">
-								<a href="">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Thêm Mới Danh Mục
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
 						</ul>
 					</li>
 
@@ -579,9 +546,7 @@
 							<i class="menu-icon fa fa-file-o"></i>
 
 							<span class="menu-text">
-								Other Pages
-
-								<span class="badge badge-primary">5</span>
+								Brand
 							</span>
 
 							<b class="arrow fa fa-angle-down"></b>
@@ -591,49 +556,14 @@
 
 						<ul class="submenu">
 							<li class="">
-								<a href="faq.html">
+								<a href="{{ route('brand.index') }}">
 									<i class="menu-icon fa fa-caret-right"></i>
-									FAQ
+									Quản Lý Thuơng Hiệu
 								</a>
 
 								<b class="arrow"></b>
 							</li>
 
-							<li class="">
-								<a href="error-404.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Error 404
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="error-500.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Error 500
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="grid.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Grid
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="blank.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Blank Page
-								</a>
-
-								<b class="arrow"></b>
-							</li>
 						</ul>
 					</li>
 				</ul><!-- /.nav-list -->
