@@ -49,8 +49,7 @@
                             </span>
                         @endif
 
-                        <select name="category_id" multiple class="form-control">
-                            <option>---</option>
+                        <select name="category_id[]" multiple="multiple" id="category_id" class="form-control">
                             @foreach($categories as $category)
                                 <option value="{{$category->id}}">
                                     {{$category->name}}
@@ -102,7 +101,7 @@
 @section('footer')
     <script src="{{ asset('js/select2.min.js') }}"></script>
     <script type="text/javascript">
-        $('.select2').select2({
+        $('#category_id').select2({
             placeholder : 'Please select user',
             multiple: true,
             tags: true,

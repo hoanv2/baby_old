@@ -55,7 +55,7 @@
 					<div><a href="">Bỉm Huggi</a></div>
 					<div><a href="">Bỉm Boby</a></div>
 					<div><a href="">Bỉm Trẻ Em</a></div>
-					<div><a href="">Bỉm Trẻ người Già</a></div>
+					<div><a href="">Bỉm Cho người Già</a></div>
 				</div>
 			</div>
 
@@ -73,15 +73,15 @@
 				<div class="clearfix backgroundWhite">
 					<div class="barTitle">Sữa
 					</div>
-					<div class="col-md-6"><a href=""><img src="{{asset('img/sua.jpg')}}" class="images"></a></div>
+					<div class="col-md-6"><a href="{{route('client.milk')}}"><img src="{{asset('img/sua.jpg')}}" class="images"></a></div>
 					<div>sữa bột grow plus đỏ 900g nutifoodHàng công ty chính hãng.date mớiSỬ DỤNG CHO TRẺ 1-10 TUỔI.Với công thức Weight Pro+ giàu dinh dưỡng, đầy đủ hàm lượng đạm, béo cần thiết giúp trẻ tăng cân, tăng chiều cao tốt; sự hiện diện MCT - chất béo chuyển hóa nhanh giúp trẻ dễ tiêu hóa, dễ hấp thu; việc bổ sung Lysin, Kẽm, FOS/Inulin, Vitamin nhóm B giúp trẻ thèm ăn, ăn ngon hơn; đồng thời tăng cường khả năng bảo vệ cơ thể, phòng tránh bệnh tật với Selen, Vitamin A-C-E; GrowPLUS+ còn giúp phát triển trí não thông qua việc bổ sung DHA, AA, Taurin, Cholin, trẻ sẽ thông minh, lanh lợi hơn, giúp bắt kịp đà phát triển về chiều cao và cân nặng, mà còn phát triển toàn diện cả về thể trạng và trí thông minh.</div>
-					<div><a href="">Xem Thêm Nhiều Sữa >></a></div>
+					<div><a href="{{route('client.milk')}}">Xem Thêm Nhiều Sữa >></a></div>
 				</div>
 
 				<div class="clearfix backgroundWhite">
 					<div class="barTitle" style="">Bỉm
 					</div>
-					<div class="col-md-6"><a href=""><img src="{{asset('img/bim.jpg')}}" class="images"></a></div>
+					<div class="col-md-6"><a href="{{route('client.diapers')}}"><img src="{{asset('img/bim.jpg')}}" class="images"></a></div>
 					<div>Tã-bỉm quần cho bé gái Moonyman được làm từ chất liệu vải mới siêu mềm mại cùng thun hông nguyên vòng co giãn theo từng chuyển động của bé, cho bé cảm giác thoải mái, dễ chịu.
 					• ​Bề mặt tã siêu mềm mịn, thân thiện với làn da nhạy cảm của bé
 					• Có chỉ thị ướt giúp mẹ biết được thời điểm cần thay tã (khi tã đầy, dải băng chỉ thị sẽ chuyển hoàn toàn sang màu xanh đậm, đó là thời điểm cần thay tã)

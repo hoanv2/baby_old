@@ -51,8 +51,10 @@ Route::post('brand/edit','admin\BrandController@edit')->name('brand.edit');
 Route::post('brand/update','admin\BrandController@update')->name('brand.update');
 Route::delete('brand/{id}','admin\BrandController@destroy')->name('brand.destroy');
 
+Route::get('/index', 'ClientController@index')->name('client.index');
+Route::get('/milk', 'ClientController@milk')->name('client.milk');
+Route::get('/diapers', 'ClientController@diapers')->name('client.diapers');
 
-
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+

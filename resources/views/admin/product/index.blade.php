@@ -26,9 +26,9 @@
                     <td>{{$product->id}}</td>
                     <td>{{$product->name}}</td>
                     <td>{{$product->price}}</td>
-                    <td> <img style="max-width: 250px" src="{{asset('image/' . $product->image)}}"
+                    <td> <img style="max-width: 250px" src="{{asset('storage/' . $product->image)}}"
                               alt=""></td>
-                    <td>{{$product->content}}</td>
+                    <td>{{ str_limit( $product->content ,$word = 70 , $end = "..." )}}</td>
                     <td>{{$product->description}}</td>
                     <td>{{$product->slug}}</td>
                     <td>

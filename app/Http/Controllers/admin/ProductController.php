@@ -33,15 +33,20 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-
         if($request->hasFile('image')){
             $path = $request->file('image')->store('image');
             $data['image'] = $path;
         }
 
-        $data['slug'] = str_slug($data['name']);
-
-        $products = Product::create($data);
+        $products = new Product();
+        $products->name = $data['name'];
+        $products->price = $data['price'];
+        $products->description = $data['description'];
+        $products->content = $data['content'];
+        $products->slug = str_slug($data['name']);
+        $products->image = $data['image'];
+        $products->category()->attach($data['category_id']);
+        $products->save();
 
         if ($products) {
             return redirect()->route('products.index')->with(['flag'=>'success','toastr.success'=>'Thêm Mới Thành Công']);
@@ -59,8 +64,7 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-        $categories = Category::get();
-
+        $categories = DB::table('category_product')->get();
         $products = Product::where('id',$id)->first();
         return view('admin.product.edit',compact('products','categories'));
 
@@ -76,9 +80,16 @@ class ProductController extends Controller
         else{
             unset($data['image']);
         }
+
+        $request->session()->flash('flash_success', trans('common.create_success'));
+
         $data['slug'] = str_slug($data['name']);
 
+//        $product = new Product();
+//        $product->category()->update($data['category_id']);
         $products = Product::find($id)->update($data);
+
+
         if ($products) {
             return redirect()->route('products.index')->with(['flag'=>'success','toastr.success'=>'Thêm Mới Thành Công']);
         }

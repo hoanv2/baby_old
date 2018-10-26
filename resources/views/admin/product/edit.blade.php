@@ -42,23 +42,22 @@
 
                 </div>
 
-                <div class="form-group">
-                    <label for="category_id">Category</label>
-                    @if ($errors->has('category_id'))
-                        <span class="help-block" style="color: red;">
-                                <strong>{{ $errors->first('category_id') }}</strong>
-                            </span>
-                    @endif
+                {{--<div class="form-group">--}}
+                    {{--<label for="category_id">Category</label>--}}
+                    {{--@if ($errors->has('category_id'))--}}
+                        {{--<span class="help-block" style="color: red;">--}}
+                                {{--<strong>{{ $errors->first('category_id') }}</strong>--}}
+                            {{--</span>--}}
+                    {{--@endif--}}
 
-                    <select name="category_id" class="form-control">
-                        <option>---</option>
-                        @foreach($categories as $category)
-                            <option value="{{$category->id}}" selected="selected">
-                                {{$category->name}}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
+                    {{--<select name="category_id[]" multiple="multiple" id="category_id" class="form-control">--}}
+                        {{--@foreach($categories as $category)--}}
+                            {{--<option value="{{ $category->id }}" {{ $category->id == old('category_id') ? 'selected' : '' }}>--}}
+                                {{--{{$category->name}}--}}
+                            {{--</option>--}}
+                        {{--@endforeach--}}
+                    {{--</select>--}}
+                {{--</div>--}}
 
                 <div class="form-group">
                     <label for="content">Content</label>
@@ -79,7 +78,7 @@
                         <div class="widget-main"  style="height: 180px;">
                             <div class="form-group">
                                 <div class="col-xs-12">
-                                    <img src='{{ asset("image/".$products->image) }}' style="max-width: 350px;height: 240px" class="col-md-3">
+                                    <img src='{{ asset("storage/".$products->image) }}' style="max-width: 350px;height: 240px" class="col-md-3">
                                     <div class="col-md-3"></div>
                                     <div class="col-md-1"><h5>Thay đổi Ảnh</h5></div>
                                     <label class="ace-file-input ace-file-multiple col-md-5">
@@ -106,7 +105,7 @@
 @section('footer')
         <script src="{{ asset('js/select2.min.js') }}"></script>
         <script type="text/javascript">
-        $('.select2').select2({
+        $('#category_id').select2({
             placeholder : 'Please select user',
             multiple: true,
             tags: true,
