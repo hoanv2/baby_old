@@ -8,7 +8,6 @@ use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use App\Models\Category;
 
-
 class ProductController extends Controller
 {
     /**
@@ -21,7 +20,6 @@ class ProductController extends Controller
         $products = Product::get();
         return view('admin.product.index',compact('products'));
     }
-
 
     public function create()
     {
@@ -45,8 +43,8 @@ class ProductController extends Controller
         $products->content = $data['content'];
         $products->slug = str_slug($data['name']);
         $products->image = $data['image'];
-        $products->category()->attach($data['category_id']);
         $products->save();
+        $products->category()->attach($data['category_id']);
 
         if ($products) {
             return redirect()->route('products.index')->with(['flag'=>'success','toastr.success'=>'Thêm Mới Thành Công']);
@@ -64,10 +62,16 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-        $categories = DB::table('category_product')->get();
-        $products = Product::where('id',$id)->first();
-        return view('admin.product.edit',compact('products','categories'));
+        $cates = Category::get();
+        $catePros = DB::table('categories')
+                    ->join('category_products' , 'categories.id','category_products.category_id')
+                    ->where('category_products.product_id',$id)
+                    ->select('categories.id as id','category_products.category_id as category_id','categories.name as name')
+                    ->get();
 
+        $category = Product::getConst(Product::Category);
+        $products = Product::where('id',$id)->first();
+        return view('admin.product.edit',compact('products','catePros', 'category' , 'cates'));
     }
 
     public function update(Request $request, $id)
@@ -84,11 +88,7 @@ class ProductController extends Controller
         $request->session()->flash('flash_success', trans('common.create_success'));
 
         $data['slug'] = str_slug($data['name']);
-
-//        $product = new Product();
-//        $product->category()->update($data['category_id']);
         $products = Product::find($id)->update($data);
-
 
         if ($products) {
             return redirect()->route('products.index')->with(['flag'=>'success','toastr.success'=>'Thêm Mới Thành Công']);

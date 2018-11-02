@@ -9,6 +9,7 @@
         <div class="box-body">
             {!! Form::open(['route' => ['products.update',$products->id], 'class' => 'form-horizontal', 'method' => 'put', 'enctype'=>'multipart/form-data']) !!}
 
+            {!! Form::hidden('id', $products->id, ['class' => 'form-control']) !!}
             <div class="row" style="width: 70%; margin-left: 200px; margin-top: 50px">
                 <div class="form-group">
                     <label for="title-post">Tên Sản Phẩm(<span style="color: red;">*</span>)</label>
@@ -42,22 +43,24 @@
 
                 </div>
 
-                {{--<div class="form-group">--}}
-                    {{--<label for="category_id">Category</label>--}}
-                    {{--@if ($errors->has('category_id'))--}}
-                        {{--<span class="help-block" style="color: red;">--}}
-                                {{--<strong>{{ $errors->first('category_id') }}</strong>--}}
-                            {{--</span>--}}
-                    {{--@endif--}}
+                <div class="form-group">
+                    <label for="category_id">Category</label>
+                    @if ($errors->has('category_id'))
+                        <span class="help-block" style="color: red;">
+                                <strong>{{ $errors->first('category_id') }}</strong>
+                            </span>
+                    @endif
 
-                    {{--<select name="category_id[]" multiple="multiple" id="category_id" class="form-control">--}}
-                        {{--@foreach($categories as $category)--}}
-                            {{--<option value="{{ $category->id }}" {{ $category->id == old('category_id') ? 'selected' : '' }}>--}}
-                                {{--{{$category->name}}--}}
-                            {{--</option>--}}
-                        {{--@endforeach--}}
-                    {{--</select>--}}
-                {{--</div>--}}
+                        <select name="category_id[]" multiple="multiple" id="category_id" class="form-control">
+                            @foreach($catePros as $catePro)
+                                <option value="{{ $catePro->id }}" {{ $catePro->id == $catePro->category_id ? 'selected' : '' }}>
+                                {{ $catePro->name}}
+                                </option>
+                            @endforeach
+
+                        </select>
+
+                </div>
 
                 <div class="form-group">
                     <label for="content">Content</label>

@@ -54,7 +54,7 @@ Route::delete('brand/{id}','admin\BrandController@destroy')->name('brand.destroy
 Route::get('/index', 'ClientController@index')->name('client.index');
 Route::get('/milk', 'ClientController@milk')->name('client.milk');
 Route::get('/diapers', 'ClientController@diapers')->name('client.diapers');
-
+Route::get('/diapersShow/{id}', 'ClientController@diapersShow')->name('client.diapersShow');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
