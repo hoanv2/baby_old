@@ -4,38 +4,42 @@
     <title>User</title>
     @endsection
     @section('content')
-         <a href="#create_modal" data-toggle="modal"><button type="button" class="btn btn-default btn-info" ><i class="fa fa-cart-plus"></i> Thêm Mới Người Dùng</button></a>
-    <table class="table table-striped table-bordered table-hover" id="example">
-        <thead>
-            <tr>
-                <th>###</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Address</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            @foreach($users as $user)
-                <tr id="tr-">
-                    <td>{{$user->id}}</td>
-                    <td>{{$user->name}}</td>
-                    <td>{{$user->email}}</td>
-                    <td>{{$user->phone}}</td>
-                    <td>{{$user->address}}</td>
-                    <td>
-                        <a href="javascript:;" onclick="edit({{ $user->id }})" ><button type="button" class="btn btn-warning">Edit</button></a>
-                        <button type="submit" data-id="{{ $user->id }}" class="btn btn-default btn-danger">Delete</button>
-                    </td>
+        <a href="#create_modal" data-toggle="modal"><button type="button" class="btn btn-default btn-info" ><i class="fa fa-cart-plus"></i> Thêm Mới Người Dùng</button></a>
+        <table class="table table-striped table-bordered table-hover" id="example">
+            <thead>
+                <tr>
+                    <th>
+                    <a href="{{ route('users.index') }}/?sort=id&order={{ $order }}">#
+                        <i class="fa fa-sort"></i></a></th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Action</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
+
+            <tbody>
+                @foreach($users as $user)
+                    <tr id="tr-">
+                        <td>{{$user->id}}</td>
+                        <td>{{$user->name}}</td>
+                        <td>{{$user->email}}</td>
+                        <td>{{$user->phone}}</td>
+                        <td>{{$user->address}}</td>
+                        <td>
+                            <a href="javascript:;" onclick="edit({{ $user->id }})" ><button type="button" class="btn btn-warning">Edit</button></a>
+                            <button type="submit" data-id="{{ $user->id }}" class="btn btn-default btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+        {{ $users->appends(Request::except('page'))->links() }}
 
 
-     <div class="modal fade" id="create_modal">
+
+        <div class="modal fade" id="create_modal">
          <div class="modal-dialog">
              <div class="modal-content">
                  <div class="modal-header">
@@ -52,7 +56,7 @@
                          <hr>
                          <div class="form-group">
                              <label for="">Tên</label>
-                             <input type="text" class="form-control" id="Createname" placeholder="Tên Người Dùng">
+                             <input type="text" class="form-control" id="Createname" placeholder="Tên Người Dùng" required>
                          </div>
                          @if ($errors->has('name'))
                              <p style="color: red">{{ $errors->first('name') }}</p>
@@ -155,6 +159,8 @@
 @endsection
 
 @section('footer')
+    {{--<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>--}}
+    {{--<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>--}}
 
     <script type="text/javascript">
         $.ajaxSetup({
@@ -164,10 +170,28 @@
         });
 
 
-        $(document).ready( function () {
-            $('#example').DataTable();
-        });
+        // $(document).ready( function () {
+        //     $('#example').DataTable();
+        // });
 
+
+        // $('#formCreate').validate({
+        //     rules: {
+        //         name: {
+        //             required: true,
+        //             max:50
+        //         },
+        //         email: {
+        //             required: true,
+        //             email: true,
+        //             max:50
+        //         },
+        //         password: {
+        //             required: true,
+        //
+        //         }
+        //     }
+        // });
 
         $(document).on('click' , '.btnCreate', function(event) {
             event.preventDefault();
@@ -228,6 +252,7 @@
             var email = $('#uEmail').val();
             var address = $('#uAddress').val();
             var id = $('#uId').val();
+            var phone = $('#uPhone').val();
             $.ajax({
                 url: '{{ route('users.update') }}',
                 type: 'POST',
@@ -236,7 +261,8 @@
                     id:id,
                     name:name,
                     email:email,
-                    address:address
+                    address:address,
+                    phone:phone,
                 },
                 success: function(res){
                     var data = res.data;

@@ -4,15 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Product;
 
 class ClientController extends Controller
 {
     public function index(){
         return view('client.index');
-    }
-
-    public function milk(){
-        return view('client.milk');
     }
 
     public function diapers()
@@ -23,13 +20,18 @@ class ClientController extends Controller
     }
     public function diapersShow($id)
     {
-        $diapers = DB::table('products')->join('category_products' , 'products.id','category_products.product_id')
+        $products = DB::table('products')
+            ->join('category_products' , 'products.id','category_products.product_id')
             ->where('category_products.category_id','1')
-            ->get();
+            ->where('category_products.id' , $id)
+            ->get()->toArray();
+        return view('client/diapers/show',(compact('products')));
+    }
 
-        $a = $diapers->where('products.id',$id)->first();
-        dd($a);
-
-        return view('client/diapers/show',(compact('diapers')));
+    public function milk()
+    {
+        $milks = DB::table('products')->join('category_products' , 'products.id','category_products.product_id')
+            ->where('category_products.category_id','2')->get();
+        return view('client/milk/milk',(compact('milks')));
     }
 }

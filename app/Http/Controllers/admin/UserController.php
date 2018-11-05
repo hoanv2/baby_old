@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -13,10 +15,20 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::get();
-        return view('admin.user.index',compact('users'));
+        $users = DB::table('users')->paginate(5);
+        $query = User::query();
+
+//        if (!empty($request->input('sort'))) {
+            $order = $request->input('order', 'asc');
+//            dd($order);
+//            dd($query->orderBy("{$request->input('sort')}", $order));
+//        }
+
+        $order = ($order == $request->input('order')) ? ($order == 'asc' ? 'desc' : 'asc') : 'desc';
+
+        return view('admin.user.index',compact('users','order'));
     }
 
     public function store(Request $request)

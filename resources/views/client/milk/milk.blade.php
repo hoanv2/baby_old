@@ -34,20 +34,23 @@
         <li><a href="#">Đăng Nhập</a></li>
     </ul>
     <div style="padding-left: 10px;padding-right: 10px">
-        <div class="clearfix backgroundWhite" style="padding-left: 100px ; padding-top: 20px; padding-bottom: 20px">
-            <div class="clearfix">{{$product->name}}</div>
-            <div class="row clearfix">
-                <div class="col-md-4">
-                    <img style="max-width: 250px" src="{{asset('storage/' . $product->image)}}" alt="">
-                </div>
-                <div class="col-md-6">
-                    <div>{{ $product->price }}$</div>
-                    <div>{!! $product->content !!}</div>
-                    <div>{!! $product->description !!}</div>
+        @foreach($milks as $milk)
+            <div class="clearfix backgroundWhite" style="padding-left: 100px ; padding-top: 20px; padding-bottom: 20px">
+                <div class="clearfix">{{$milk->name}}</div>
+                <div class="row clearfix">
+                    <div class="col-md-4">
+                        <img style="max-width: 250px" src="{{asset('storage/' . $milk->image)}}" alt="">
+                    </div>
+                    <div class="col-md-6">
+                        <div>{{ $milk->price }}$</div>
+                        <div>{!! str_limit( $milk->content ,$word = 70 , $end = "..." ) !!}</div>
+                        <div>{!! $milk->description !!}</div>
+                        <a href="{{ route('client.diapersShow', $milk->id) }}">...ReadMore...</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <hr>
+            <hr>
+        @endforeach
     </div>
 </div>
 

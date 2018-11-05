@@ -21,6 +21,12 @@ Auth::routes();
 
 //Route::resource('user','admin\UserController');
 Route::get('user','admin\UserController@index')->name('users.index');
+
+Route::get('/index', 'admin\ProductController@index')->name('client.index');
+Route::get('/milk', 'admin\ProductController@milk')->name('client.milk');
+Route::get('/diapers', 'admin\ProductController@diapers')->name('client.diapers');
+Route::get('/diapersShow/{id}', 'admin\ProductController@diapersShow')->name('client.diapersShow');
+
 Route::post('user/store','admin\UserController@store')->name('users.store');
 Route::post('user/create','admin\UserController@create')->name('users.create');
 Route::post('user/edit','admin\UserController@edit')->name('users.edit');
@@ -51,10 +57,7 @@ Route::post('brand/edit','admin\BrandController@edit')->name('brand.edit');
 Route::post('brand/update','admin\BrandController@update')->name('brand.update');
 Route::delete('brand/{id}','admin\BrandController@destroy')->name('brand.destroy');
 
-Route::get('/index', 'ClientController@index')->name('client.index');
-Route::get('/milk', 'ClientController@milk')->name('client.milk');
-Route::get('/diapers', 'ClientController@diapers')->name('client.diapers');
-Route::get('/diapersShow/{id}', 'ClientController@diapersShow')->name('client.diapersShow');
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 
