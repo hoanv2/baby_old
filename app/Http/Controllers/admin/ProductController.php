@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Models\Brand;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
@@ -24,7 +25,8 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::get();
-        return view('admin.product.create',compact('categories','products'));
+        $brands = Brand::get();
+        return view('admin.product.create',compact('categories','products' , 'brands'));
     }
 
 
@@ -45,6 +47,9 @@ class ProductController extends Controller
         $products->image = $data['image'];
         $products->save();
         $products->category()->attach($data['category_id']);
+        if ($data['brand_id']){
+            $products->brand()->attach($data['brand_id']);
+        }
 
         if ($products) {
             return redirect()->route('products.index')->with(['flag'=>'success','toastr.success'=>'Thêm Mới Thành Công']);
@@ -57,7 +62,13 @@ class ProductController extends Controller
     public function show($id)
     {
         $products = Product::where('id',$id)->first();
-        return view('admin.product.show',compact('products'));
+        $category = Category::join('category_products','categories.id','category_products.category_id')
+                    ->where('category_products.product_id',$id)
+                    ->first();
+        $brands = Brand::join('brand_products','brands.id','brand_products.brand_id')
+            ->where('brand_products.product_id',$id)
+            ->first();
+        return view('admin.product.show',compact('products' , 'category' , 'brands'));
     }
 
     public function edit($id)
@@ -69,9 +80,8 @@ class ProductController extends Controller
                     ->select('categories.id as id','category_products.category_id as category_id','categories.name as name')
                     ->get();
 
-        $category = Product::getConst(Product::Category);
         $products = Product::where('id',$id)->first();
-        return view('admin.product.edit',compact('products','catePros', 'category' , 'cates'));
+        return view('admin.product.edit',compact('products','catePros' , 'cates'));
     }
 
     public function update(Request $request, $id)
@@ -89,7 +99,6 @@ class ProductController extends Controller
 
         $data['slug'] = str_slug($data['name']);
         $products = Product::find($id);
-//        dd($products);
         if(!empty($data['category_id'])){
 
         }else{

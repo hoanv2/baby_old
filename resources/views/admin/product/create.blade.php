@@ -41,22 +41,38 @@
 
                     </div>
 
-                    <div class="form-group">
-                        <label for="category_id">Category</label>
-                        @if ($errors->has('category_id'))
-                            <span class="help-block" style="color: red;">
-                                <strong>{{ $errors->first('category_id') }}</strong>
-                            </span>
-                        @endif
+                    <div class="row">
+                        <div class="form-group col-md-5">
+                            <label for="category_id">Category</label>
+                            @if ($errors->has('category_id'))
+                                <span class="help-block" style="color: red;">
+                                    <strong>{{ $errors->first('category_id') }}</strong>
+                                </span>
+                            @endif
 
-                        <select name="category_id[]" multiple="multiple" id="category_id" class="form-control">
-                            @foreach($categories as $category)
-                                <option value="{{$category->id}}">
-                                    {{$category->name}}
-                                </option>
-                            @endforeach
-                        </select>
+                            <select name="category_id[]" multiple="multiple" id="category_id" class="form-control">
+                                @foreach($categories as $category)
+                                    <option value="{{$category->id}}">
+                                        {{$category->name}}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
 
+                        <div class="col-md-1"></div>
+
+                        <div class="form-group col-md-6">
+                            <label for="brand_id">Brand</label>
+                            <select name="brand_id" id="brand_id" class="form-control">
+                                @if(!empty($brands))
+                                    @foreach($brands as $brand)
+                                        <option value="{{$brand->id}}">
+                                            {{$brand->name}}
+                                        </option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -107,7 +123,6 @@
             tags: true,
             tokenSeparators: [',', ' '],
         });
-
 
         $('#image').ace_file_input({
             style: 'well',

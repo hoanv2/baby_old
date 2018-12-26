@@ -26,7 +26,14 @@ class ClientController extends Controller
             ->where('category_products.category_id','1')
             ->where('category_products.id' , $id)
             ->first();
-        return view('client/diapers/show',(compact('diaper')));
+
+        $brands = DB::table('products')
+            ->join('brand_products' , 'products.id','brand_products.product_id')
+            ->join('brands' , 'brands.id','brand_products.brand_id')
+            ->where('brand_products.id' , $id)
+            ->select('brands.name')
+            ->first();
+        return view('client/diapers/show',(compact('diaper', 'brands')));
     }
 
     public function milk()
@@ -43,6 +50,13 @@ class ClientController extends Controller
             ->where('category_products.category_id','2')
             ->where('category_products.id' , $id)
             ->first();
-        return view('client/milk/show',(compact('milk')));
+
+        $brands = DB::table('products')
+            ->join('brand_products' , 'products.id','brand_products.product_id')
+            ->join('brands' , 'brands.id','brand_products.brand_id')
+            ->where('brand_products.id' , $id)
+            ->select('brands.name')
+            ->first();
+        return view('client/milk/show',(compact('milk', 'brands')));
     }
 }

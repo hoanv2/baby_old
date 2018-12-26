@@ -23,12 +23,20 @@
             <hr>
 
             <label for="">Ảnh Sản Phẩm: </label>
-            <div><img style="max-width: 250px" src="{{asset('image/' . $products->image)}}"
+            <div><img style="max-width: 250px" src="{{asset('storage/' . $products->image)}}"
                       alt=""></div>
             <hr>
 
             <label for="">Slug: </label>
             <div>{{ $products->slug }}</div>
+            <hr>
+
+            <label for="">Category: </label>
+            <div>{{ $category->name }}</div>
+            <hr>
+
+            <label for="">Brand: </label>
+            <div>{{ $brands->name }}</div>
             <hr>
         </div>
     </div>

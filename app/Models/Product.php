@@ -11,9 +11,9 @@ class Product extends Model
     ];
 
     const Category = [
-        1 => 'bim',
-        2 => 'vv',
-        5 => 'sữa',
+        1 => 'Sữa',
+        2 => 'Bỉm',
+        3 => 'Khác',
     ];
 
     public static function getConst($consts)
@@ -32,8 +32,12 @@ class Product extends Model
 
     public function category()
     {
-//        return $this->belongsToMany('App\Models\Category');
         return $this->belongsToMany('App\Models\Category', 'category_products', 'product_id', 'category_id')->withTimestamps();
+    }
+
+    public function brand()
+    {
+        return $this->belongsToMany('App\Models\Brand', 'brand_products', 'product_id', 'brand_id')->withTimestamps();
     }
 
 }

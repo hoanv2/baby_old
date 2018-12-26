@@ -41,15 +41,16 @@
 
     <div style="padding-left: 10px;padding-right: 10px">
         <div class="clearfix backgroundWhite" style="padding-left: 100px ; padding-top: 20px; padding-bottom: 20px">
-            <div class="clearfix">{{$milk->name}}</div>
+            <h3 class="clearfix"><b>{{$milk->name}}</b></h3>
+            <div style="color: gray"><b>Nhà sản xuất: </b>{{ $brands->name }}</div>
             <div class="row clearfix">
                 <div class="col-md-4">
                     <img style="max-width: 250px" src="{{asset('storage/' . $milk->image)}}" alt="">
                 </div>
                 <div class="col-md-6">
-                    <div>{{ $milk->price }}$</div>
+                    <h3><b>$: {{ $milk->price }} VNĐ</b></h3>
+                    <div style="color: green">{!! $milk->description !!}</div>
                     <div>{!! $milk->content !!}</div>
-                    <div>{!! $milk->description !!}</div>
                 </div>
             </div>
         </div>
