@@ -37,8 +37,6 @@
         </table>
         {{ $users->appends(Request::except('page'))->links() }}
 
-
-
         <div class="modal fade" id="create_modal">
          <div class="modal-dialog">
              <div class="modal-content">
@@ -134,6 +132,11 @@
                              <input type="text" class="form-control" id="uEmail" placeholder="Email">
                          </div>
 
+                         {{--<div class="form-group">--}}
+                             {{--<label for="">Password</label>--}}
+                             {{--<input type="password" class="form-control" id="uPassword" placeholder="password">--}}
+                         {{--</div>--}}
+
                          <div class="form-group">
                              <label for="">Địa Chỉ</label>
                              <input type="text" class="form-control" id="uAddress" placeholder="Địa Chỉ">
@@ -169,30 +172,6 @@
             }
         });
 
-
-        // $(document).ready( function () {
-        //     $('#example').DataTable();
-        // });
-
-
-        // $('#formCreate').validate({
-        //     rules: {
-        //         name: {
-        //             required: true,
-        //             max:50
-        //         },
-        //         email: {
-        //             required: true,
-        //             email: true,
-        //             max:50
-        //         },
-        //         password: {
-        //             required: true,
-        //
-        //         }
-        //     }
-        // });
-
         $(document).on('click' , '.btnCreate', function(event) {
             event.preventDefault();
 
@@ -213,6 +192,7 @@
                     phone:phone,
                 },
                 success: function(res){
+                    console.log(data);
                     var data = res.data;
                     toastr.success('Thêm mới thành công !');
                     $('#create_modal').modal('hide');
@@ -240,6 +220,7 @@
                     $('#uId').val(datas.id);
                     $('#uName').val(datas.name);
                     $('#uEmail').val(datas.email);
+                    // $('#uPassword').val(datas.password);
                     $('#uAddress').val(datas.address);
                     $('#uPhone').val(datas.phone);
                 }
@@ -250,6 +231,7 @@
             event.preventDefault();
             var name = $('#uName').val();
             var email = $('#uEmail').val();
+            var password = $('#uPassword').val();
             var address = $('#uAddress').val();
             var id = $('#uId').val();
             var phone = $('#uPhone').val();
@@ -262,6 +244,7 @@
                     name:name,
                     email:email,
                     address:address,
+                    password:password,
                     phone:phone,
                 },
                 success: function(res){

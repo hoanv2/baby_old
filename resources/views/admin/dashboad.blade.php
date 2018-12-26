@@ -344,33 +344,33 @@
 							</a>
 
 							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-								{{--<li>--}}
-									{{--<a href="#">--}}
-										{{--<i class="ace-icon fa fa-cog"></i>--}}
-										{{--Settings--}}
-									{{--</a>--}}
-								{{--</li>--}}
+								<li>
+									<a href="#">
+										<i class="ace-icon fa fa-cog"></i>
+										Settings
+									</a>
+								</li>
 
-								{{--<li>--}}
-									{{--<a href="profile.html">--}}
-										{{--<i class="ace-icon fa fa-user"></i>--}}
-										{{--Profile--}}
-									{{--</a>--}}
-								{{--</li>--}}
+								<li>
+									<a href="profile.html">
+										<i class="ace-icon fa fa-user"></i>
+										Profile
+									</a>
+								</li>
 
-								{{--<li class="divider"></li>--}}
+								<li class="divider"></li>
 
-								 {{--<li>--}}
-									{{--<a href="{{ route('logout') }}"--}}
-									{{--onclick="event.preventDefault();--}}
-									{{--document.getElementById('logout-form').submit();">--}}
-									{{--Đăng xuất--}}
-									{{--</a>--}}
+								 <li>
+									<a href="{{ route('logout') }}"
+									onclick="event.preventDefault();
+									document.getElementById('logout-form').submit();">
+									Đăng xuất
+									</a>
 
-								{{--<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">--}}
-									{{--{{ csrf_field() }}--}}
-								{{--</form>--}}
-								{{--</li>--}}
+								<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+									{{ csrf_field() }}
+								</form>
+								</li>
 							</ul>
 						</li>
 					</ul>

@@ -88,8 +88,14 @@ class ProductController extends Controller
         $request->session()->flash('flash_success', trans('common.create_success'));
 
         $data['slug'] = str_slug($data['name']);
-        $products = Product::find($id)->update($data);
+        $products = Product::find($id);
+//        dd($products);
+        if(!empty($data['category_id'])){
 
+        }else{
+            unset($data['category_id']);
+        }
+        $products->update($data);
         if ($products) {
             return redirect()->route('products.index')->with(['flag'=>'success','toastr.success'=>'Thêm Mới Thành Công']);
         }
@@ -107,37 +113,4 @@ class ProductController extends Controller
             'messages' => 'xóa thành công',
         ]);
     }
-
-
-    public function diapers()
-    {
-        $diapers = DB::table('products')->join('category_products' , 'products.id','category_products.product_id')
-            ->where('category_products.category_id','1')->get();
-
-        return view('client/diapers/diapers',(compact('diapers')));
-    }
-    public function diapersShow($id)
-    {
-        $category = Category::all();
-        $id = Category::where('id', '=', $id)->first();
-        $product = Product::where('id', '=', $id['id'])->select('products.id','products.name','products.name','products.name','products.name','products.name')->get();
-//        dd($product->name);
-
-//        $products = DB::table('products')
-//            ->join('category_products' , 'products.id','category_products.product_id')
-//            ->where('category_products.category_id','1')
-//            ->where('category_products.id' , $id)
-//            ->get()->toArray();
-
-
-        return view('client/diapers/show',(compact('product')));
-    }
-
-    public function milk()
-    {
-        $milks = DB::table('products')->join('category_products' , 'products.id','category_products.product_id')
-            ->where('category_products.category_id','2')->get();
-        return view('client/milk/milk',(compact('milks')));
-    }
-
 }

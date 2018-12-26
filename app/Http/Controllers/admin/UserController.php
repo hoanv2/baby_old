@@ -19,13 +19,7 @@ class UserController extends Controller
     {
         $users = DB::table('users')->paginate(5);
         $query = User::query();
-
-//        if (!empty($request->input('sort'))) {
-            $order = $request->input('order', 'asc');
-//            dd($order);
-//            dd($query->orderBy("{$request->input('sort')}", $order));
-//        }
-
+        $order = $request->input('order', 'asc');
         $order = ($order == $request->input('order')) ? ($order == 'asc' ? 'desc' : 'asc') : 'desc';
 
         return view('admin.user.index',compact('users','order'));
@@ -33,8 +27,9 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $request->password = bcrypt($request->password);
-        $users = User::create($request->all());
+        $data = $request->all();
+        $data['password'] = bcrypt($data['password']);
+        $users = User::create($data);
         return response()->json([
             'data' => $users,
             'status' => true,
@@ -52,7 +47,8 @@ class UserController extends Controller
 
     public function update(Request $request){
         $data = $request->all();
-        $datas= User::find($data['id'])->update($data);
+//        $data['password'] = bcrypt($data['password']);
+        User::find($data['id'])->update($data);
         return response()->json([
             'status' => true,
             'data' => $data,

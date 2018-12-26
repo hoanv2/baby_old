@@ -18,25 +18,47 @@
 			</form>
 		</div>
 		<ul class="content clearfix" style="">
-			<li><a href="#">Trang Chủ</a></li>
-			<li><a href="#">Mẹo chăm sóc trẻ</a></li>
+			<li><a href="{{ route('client.index') }}">Trang Chủ</a></li>
+			<li><a href="http://www.comfort.com.vn/bai-bao/the-loai/1094100/cham-soc-be-yeu">Mẹo chăm sóc trẻ</a></li>
 
 			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Danh Mục <b class="caret"></b></a>
-				<ul class="dropdown-menu">
-					<li class="catalog"><a href="#">Bỉm</a></li>
-					<li class="catalog"><a href="#">Sữa</a></li>
-					<li class="catalog"><a href="#">Khác</a></li>
-				</ul>
+				<span style="color: white;">Dannh Mục</span>
+				<div class="dropdown-content">
+					<div><a href="{{ route('client.diapers') }}">Bỉm</a></div>
+					<hr>
+					<div><a href="{{ route('client.milk') }}">Sữa</a></div>
+					<hr>
+
+					<div><a href="#">Khác</a></div>
+				</div>
 			</li>
-			<li><a href="#">Bí quyết giữ dáng sau sinh</a></li>
+
+			<li><a href="https://eva.vn/ba-bau/10-bi-quyet-vang-lay-lai-voc-dang-sau-sinh-c85a252486.html">Bí quyết giữ dáng sau sinh</a></li>
 			<li><a href="#main-footer">Liên Hệ</a></li>
-			<li><a href="#">Đăng Nhập</a></li>
-		</ul>
+            @if(!\Illuminate\Support\Facades\Auth::user())
+			    <li><a href="admin">Đăng Nhập</a></li>
+            @else
+                <li class="dropdown">
+                    <span style="color: white;">Welcome: {{\Illuminate\Support\Facades\Auth::user()->name}}</span>
+                    <div class="dropdown-content">
+
+                        <a href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                            Đăng xuất
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    </div>
+                </li>
+            @endif
+        </ul>
 
 		<div class="navLeft">
-			<div class="col-md-4 backgroundWhite">
-				<div class="clearfix backgroundWhite">
+			<div class="col-md-4">
+				<div class="clearfix backgroundWhite DadmarginLeft">
 					<div class="barTitle2">Hàng Sữa</div>
 					<div><a href="">Sữa Tươi</a></div>
 					<div><a href="">Sữa Bột</a></div>
@@ -50,7 +72,7 @@
 					<div><a href="">Sữa Vinamilk</a></div>
 				</div>
 				<br>
-				<div class="clearfix backgroundWhite">
+				<div class="clearfix backgroundWhite DadmarginLeft">
 					<div class="barTitle2">Hàng Bỉm</div>
 					<div><a href="">Bỉm Huggi</a></div>
 					<div><a href="">Bỉm Boby</a></div>
@@ -78,7 +100,7 @@
 					<div><a href="{{route('client.milk')}}">Xem Thêm Nhiều Sữa >></a></div>
 				</div>
 
-				<div class="clearfix backgroundWhite">
+				<div class="clearfix backgroundWhite" style="padding-bottom: 30px">
 					<div class="barTitle" style="">Bỉm
 					</div>
 					<div class="col-md-6"><a href="{{route('client.diapers')}}"><img src="{{asset('img/bim.jpg')}}" class="images"></a></div>
@@ -89,20 +111,20 @@
 					• Thiết kế ngộ nghĩnh với hình gấu Pooh xinh xắn đầy màu sắc</div>
 					<div><a href="">Xem Thêm Nhiều Bỉm >></a></div>
 				</div>
-			</div>
+            </div>
 		</div>
 	</div>
-	
-	    <footer id="main-footer" class="clearfix">
-            <div class="widget">
-                <h3>Liên Hệ</h3>
-                <ul>
-                    <li><span class="square-icon"><i class="fa fa-map-marker"></i></span>Address : Số Nhà 1 , Tổ 1 , Phường Lê Hồng Phong , Thành Phố Phủ Lý , Tỉnh Hà Nam</li>
-                    <li><span class="square-icon"><i class="fa fa-phone"></i></span>Number Phone: 0968.797.169 <br>
-                    <p>0123.456.789</p></li>
-                    <li><span class="square-icon"><i class="fa fa-envelope-o"></i></span>Email: nvanhoa2112@gmail.com</li>
-                </ul>
-            </div>
-        </footer>
+
+	<footer id="main-footer" class="clearfix">
+		<div class="widget">
+			<h3>Liên Hệ</h3>
+			<ul>
+				<div><span class="square-icon"><i class="fa fa-map-marker"></i></span>Address : Số Nhà 1 , Tổ 1 , Phường Lê Hồng Phong , Thành Phố Phủ Lý , Tỉnh Hà Nam</div>
+				<div><span class="square-icon"><i class="fa fa-phone"></i></span>Number Phone: 0968.797.169 <br>
+				<p>0123.456.789</p></div>
+				<div><span class="square-icon"><i class="fa fa-envelope-o"></i></span>Email: nvanhoa2112@gmail.com</div>
+			</ul>
+		</div>
+	</footer>
 </body>
 </html>

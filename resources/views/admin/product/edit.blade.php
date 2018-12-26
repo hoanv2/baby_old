@@ -51,14 +51,21 @@
                             </span>
                     @endif
 
-                        <select name="category_id[]" multiple="multiple" id="category_id" class="form-control">
-                            @foreach($catePros as $catePro)
-                                <option value="{{ $catePro->id }}" {{ $catePro->id == $catePro->category_id ? 'selected' : '' }}>
-                                {{ $catePro->name}}
-                                </option>
-                            @endforeach
+                    {{--<select name="category_id[]" multiple="multiple" id="category_id" class="form-control">--}}
+                        {{--@foreach($catePros as $catePro)--}}
+                            {{--<option value="{{ $catePro->id }}" {{ $catePro->id == $catePro->category_id ? 'selected' : '' }}>--}}
+                            {{--{{ $catePro->name}}--}}
+                            {{--</option>--}}
+                        {{--@endforeach--}}
+                    {{--</select>--}}
 
-                        </select>
+                    <select name="category_id[]" multiple="multiple" id="category_id" class="form-control">
+                        @foreach($cates as $categories)
+                            <option value="{{$categories->id}}">
+                                {{$categories->name}}
+                            </option>
+                        @endforeach
+                    </select>
 
                 </div>
 
